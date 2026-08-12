@@ -1,0 +1,84 @@
+name: CI — Frontend
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - "frontend/**"
+      - ".github/workflows/ci-frontend.yml"
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - "frontend/**"
+      - ".github/workflows/ci-frontend.yml"
+
+env:
+  NODE_VERSION: "20"
+
+jobs:
+  lint-typecheck:
+    name: Lint, Format & Type Check
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          echo "npm install will run once frontend/package.json is created"
+          # npm ci
+
+      - name: TypeScript type check
+        run: |
+          echo "tsc check will run once frontend is scaffolded"
+          # npx tsc --noEmit
+
+      - name: ESLint
+        run: |
+          echo "eslint will run once frontend is scaffolded"
+          # npx eslint src/ --ext .ts,.tsx
+
+      - name: Prettier format check
+        run: |
+          echo "prettier check will run once frontend is scaffolded"
+          # npx prettier --check src/
+
+  build:
+    name: Build (Next.js)
+    runs-on: ubuntu-latest
+    needs: [lint-typecheck]
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          echo "npm install will run once frontend/package.json is created"
+          # npm ci
+
+      - name: Build
+        run: |
+          echo "npm run build will run once frontend is scaffolded"
+          # npm run build
+        env:
+          NEXT_PUBLIC_API_URL: http://localhost:8000
