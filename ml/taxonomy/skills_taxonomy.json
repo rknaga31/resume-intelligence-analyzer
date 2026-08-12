@@ -1,0 +1,258 @@
+{
+  "version": "1.0.0",
+  "description": "Extensible skill taxonomy for Resume Intelligence Analyzer. Add new skills here — the classifier reads this file at runtime.",
+  "categories": {
+    "AI / Machine Learning": {
+      "canonical": "AI/ML",
+      "skills": {
+        "pytorch": ["pytorch", "torch", "py torch"],
+        "tensorflow": ["tensorflow", "tf", "tensor flow"],
+        "keras": ["keras"],
+        "scikit-learn": ["scikit-learn", "sklearn", "scikit learn"],
+        "xgboost": ["xgboost", "xgb"],
+        "lightgbm": ["lightgbm", "lgbm", "light gbm"],
+        "catboost": ["catboost"],
+        "mlflow": ["mlflow", "ml flow"],
+        "ray": ["ray", "ray tune"],
+        "optuna": ["optuna"],
+        "onnx": ["onnx"],
+        "triton": ["triton inference server", "nvidia triton"],
+        "kubeflow": ["kubeflow"],
+        "vertex ai": ["vertex ai", "google vertex ai"],
+        "sagemaker": ["sagemaker", "aws sagemaker", "amazon sagemaker"],
+        "weights & biases": ["weights & biases", "wandb"],
+        "deep learning": ["deep learning", "deep neural network", "dnn"],
+        "reinforcement learning": ["reinforcement learning", "rl", "dqn", "ppo"],
+        "federated learning": ["federated learning"],
+        "mlops": ["mlops", "ml ops"]
+      }
+    },
+    "Data Science": {
+      "canonical": "Data Science",
+      "skills": {
+        "pandas": ["pandas", "pd"],
+        "numpy": ["numpy", "np"],
+        "scipy": ["scipy"],
+        "matplotlib": ["matplotlib", "pyplot"],
+        "seaborn": ["seaborn"],
+        "plotly": ["plotly", "plotly dash"],
+        "polars": ["polars"],
+        "dask": ["dask"],
+        "pyspark": ["pyspark", "apache spark", "spark"],
+        "sql": ["sql", "mysql", "postgresql", "structured query language"],
+        "tableau": ["tableau"],
+        "power bi": ["power bi", "powerbi"],
+        "excel": ["excel", "ms excel", "microsoft excel"],
+        "a/b testing": ["a/b testing", "ab testing", "hypothesis testing", "statistical testing"],
+        "feature engineering": ["feature engineering", "feature selection"],
+        "data pipeline": ["data pipeline", "etl", "elt", "data engineering"],
+        "airflow": ["airflow", "apache airflow"],
+        "dbt": ["dbt", "data build tool"],
+        "great expectations": ["great expectations", "data quality"]
+      }
+    },
+    "NLP": {
+      "canonical": "NLP",
+      "skills": {
+        "spacy": ["spacy", "spacy nlp"],
+        "nltk": ["nltk", "natural language toolkit"],
+        "hugging face transformers": ["hugging face", "huggingface", "transformers", "hf transformers"],
+        "bert": ["bert", "roberta", "distilbert", "albert", "deberta"],
+        "gpt": ["gpt", "gpt-2", "gpt-3", "gpt-4", "gpt4"],
+        "llama": ["llama", "llama2", "llama 2", "llama3", "meta llama"],
+        "mistral": ["mistral", "mixtral"],
+        "t5": ["t5", "flan-t5"],
+        "text classification": ["text classification", "sentiment analysis", "sentiment"],
+        "ner": ["ner", "named entity recognition", "information extraction"],
+        "question answering": ["question answering", "qa", "extractive qa"],
+        "summarization": ["summarization", "text summarization", "abstractive summarization"],
+        "langchain": ["langchain", "lang chain"],
+        "llamaindex": ["llamaindex", "llama index", "llama-index"],
+        "vector search": ["vector search", "vector similarity", "semantic search"],
+        "rag": ["rag", "retrieval augmented generation", "retrieval-augmented"],
+        "tokenization": ["tokenization", "tokenizer", "bpe", "byte pair encoding"],
+        "fine-tuning": ["fine-tuning", "finetuning", "lora", "qlora", "peft"]
+      }
+    },
+    "Generative AI": {
+      "canonical": "Generative AI",
+      "skills": {
+        "openai api": ["openai", "openai api", "chatgpt api"],
+        "anthropic claude": ["anthropic", "claude", "claude api"],
+        "google gemini": ["gemini", "google gemini", "bard"],
+        "stable diffusion": ["stable diffusion", "sdxl", "diffusion models"],
+        "gan": ["gan", "generative adversarial network", "stylegan"],
+        "vae": ["vae", "variational autoencoder"],
+        "prompt engineering": ["prompt engineering", "prompt design", "few-shot", "zero-shot"],
+        "llm evaluation": ["llm evaluation", "llm benchmarking", "evals"],
+        "ai safety": ["ai safety", "alignment", "constitutional ai"],
+        "multimodal": ["multimodal", "vision-language", "gpt-4v", "llava"]
+      }
+    },
+    "Computer Vision": {
+      "canonical": "Computer Vision",
+      "skills": {
+        "opencv": ["opencv", "cv2"],
+        "yolo": ["yolo", "yolov5", "yolov8", "ultralytics"],
+        "detectron2": ["detectron2"],
+        "torchvision": ["torchvision"],
+        "image classification": ["image classification", "cnn", "convolutional neural network"],
+        "object detection": ["object detection"],
+        "image segmentation": ["image segmentation", "semantic segmentation", "instance segmentation"],
+        "ocr": ["ocr", "tesseract", "optical character recognition"]
+      }
+    },
+    "Web Development": {
+      "canonical": "Web Development",
+      "skills": {
+        "html": ["html", "html5"],
+        "css": ["css", "css3", "scss", "sass", "tailwind", "tailwind css"],
+        "javascript": ["javascript", "js", "es6", "es2015"],
+        "typescript": ["typescript", "ts"],
+        "react": ["react", "react.js", "reactjs"],
+        "next.js": ["next.js", "nextjs", "next js"],
+        "vue.js": ["vue", "vue.js", "vuejs"],
+        "angular": ["angular", "angularjs"],
+        "svelte": ["svelte", "sveltekit"],
+        "graphql": ["graphql", "apollo"],
+        "rest api": ["rest", "rest api", "restful", "restful api"],
+        "websockets": ["websockets", "socket.io", "real-time"],
+        "redux": ["redux", "zustand", "recoil", "jotai"]
+      }
+    },
+    "Backend": {
+      "canonical": "Backend",
+      "skills": {
+        "python": ["python", "python 3", "py"],
+        "fastapi": ["fastapi", "fast api"],
+        "django": ["django", "django rest framework", "drf"],
+        "flask": ["flask"],
+        "node.js": ["node.js", "nodejs", "node"],
+        "express.js": ["express", "express.js"],
+        "go": ["go", "golang"],
+        "java": ["java", "spring", "spring boot", "spring framework"],
+        "rust": ["rust"],
+        "c++": ["c++", "cpp"],
+        "c#": ["c#", ".net", "asp.net", "dotnet"],
+        "ruby": ["ruby", "rails", "ruby on rails"],
+        "grpc": ["grpc", "protobuf", "protocol buffers"],
+        "microservices": ["microservices", "service mesh", "event-driven"],
+        "celery": ["celery", "task queue", "async tasks"]
+      }
+    },
+    "Databases": {
+      "canonical": "Databases",
+      "skills": {
+        "postgresql": ["postgresql", "postgres", "pg"],
+        "mysql": ["mysql"],
+        "sqlite": ["sqlite"],
+        "mongodb": ["mongodb", "mongo"],
+        "redis": ["redis"],
+        "elasticsearch": ["elasticsearch", "elastic search", "opensearch"],
+        "cassandra": ["cassandra", "apache cassandra"],
+        "dynamodb": ["dynamodb", "aws dynamodb", "amazon dynamodb"],
+        "firebase": ["firebase", "firestore"],
+        "pinecone": ["pinecone"],
+        "qdrant": ["qdrant"],
+        "weaviate": ["weaviate"],
+        "chroma": ["chroma", "chromadb"],
+        "neo4j": ["neo4j", "graph database"],
+        "sqlalchemy": ["sqlalchemy", "alchemy"],
+        "prisma": ["prisma"]
+      }
+    },
+    "Cloud": {
+      "canonical": "Cloud",
+      "skills": {
+        "aws": ["aws", "amazon web services", "ec2", "s3", "lambda"],
+        "gcp": ["gcp", "google cloud", "google cloud platform"],
+        "azure": ["azure", "microsoft azure"],
+        "cloudflare": ["cloudflare"],
+        "vercel": ["vercel"],
+        "netlify": ["netlify"],
+        "heroku": ["heroku"],
+        "render": ["render"],
+        "serverless": ["serverless", "faas", "function as a service"],
+        "cdn": ["cdn", "content delivery network"],
+        "vpc": ["vpc", "virtual private cloud", "networking"]
+      }
+    },
+    "DevOps": {
+      "canonical": "DevOps",
+      "skills": {
+        "docker": ["docker", "dockerfile", "docker compose", "containerization"],
+        "kubernetes": ["kubernetes", "k8s", "helm"],
+        "github actions": ["github actions", "ci/cd", "continuous integration", "continuous delivery"],
+        "jenkins": ["jenkins"],
+        "gitlab ci": ["gitlab ci", "gitlab"],
+        "terraform": ["terraform", "infrastructure as code", "iac"],
+        "ansible": ["ansible"],
+        "nginx": ["nginx"],
+        "linux": ["linux", "unix", "bash", "shell scripting"],
+        "prometheus": ["prometheus"],
+        "grafana": ["grafana"],
+        "elk stack": ["elk", "elasticsearch", "logstash", "kibana"],
+        "datadog": ["datadog"],
+        "sentry": ["sentry"],
+        "git": ["git", "version control"]
+      }
+    },
+    "Cybersecurity": {
+      "canonical": "Cybersecurity",
+      "skills": {
+        "oauth2": ["oauth2", "oauth", "openid connect", "oidc"],
+        "jwt": ["jwt", "json web token"],
+        "tls/ssl": ["tls", "ssl", "https", "certificates"],
+        "penetration testing": ["penetration testing", "pen testing", "ethical hacking"],
+        "owasp": ["owasp", "web application security"],
+        "zero trust": ["zero trust", "zero trust architecture"],
+        "soc 2": ["soc 2", "soc2", "compliance"],
+        "encryption": ["encryption", "aes", "rsa", "cryptography"]
+      }
+    },
+    "Tools": {
+      "canonical": "Tools",
+      "skills": {
+        "git": ["git"],
+        "jira": ["jira", "atlassian jira"],
+        "confluence": ["confluence"],
+        "figma": ["figma", "ui design"],
+        "postman": ["postman", "api testing"],
+        "jupyter": ["jupyter", "jupyter notebook", "jupyterlab"],
+        "vs code": ["vscode", "vs code", "visual studio code"],
+        "pycharm": ["pycharm"],
+        "vim": ["vim", "neovim"],
+        "datagrip": ["datagrip"],
+        "slack": ["slack"]
+      }
+    },
+    "Soft Skills": {
+      "canonical": "Soft Skills",
+      "skills": {
+        "leadership": ["leadership", "led", "managed team", "team lead"],
+        "communication": ["communication", "presentation", "public speaking"],
+        "problem solving": ["problem solving", "analytical thinking", "critical thinking"],
+        "agile": ["agile", "scrum", "kanban", "sprint"],
+        "mentorship": ["mentorship", "mentoring", "coaching", "intern"],
+        "cross-functional": ["cross-functional", "stakeholder", "collaboration"],
+        "project management": ["project management", "pm", "pmp"],
+        "data-driven": ["data-driven", "metrics-driven", "kpi"]
+      }
+    }
+  },
+  "related_skills": {
+    "pytorch": ["tensorflow", "keras", "mxnet", "jax"],
+    "tensorflow": ["pytorch", "keras", "jax"],
+    "react": ["next.js", "vue.js", "angular", "svelte"],
+    "next.js": ["react", "vue.js", "nuxt"],
+    "fastapi": ["flask", "django", "express.js"],
+    "postgresql": ["mysql", "sqlite", "cockroachdb"],
+    "docker": ["kubernetes", "podman"],
+    "aws": ["gcp", "azure"],
+    "openai api": ["anthropic claude", "google gemini"],
+    "langchain": ["llamaindex"],
+    "pinecone": ["qdrant", "weaviate", "chroma"],
+    "bert": ["roberta", "distilbert", "gpt", "t5"],
+    "kubernetes": ["docker", "helm", "openshift"]
+  }
+}
