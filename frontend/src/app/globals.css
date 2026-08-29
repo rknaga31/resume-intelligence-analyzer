@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: 139 92 246;       /* violet-500 */
+    --color-primary-light: 167 139 250; /* violet-400 */
+    --color-accent: 34 211 238;         /* cyan-400 */
+    --color-success: 52 211 153;        /* emerald-400 */
+    --color-warning: 251 191 36;        /* yellow-400 */
+    --color-danger: 248 113 113;        /* red-400 */
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: rgba(139, 92, 246, 0.3);
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold
+           bg-gradient-to-r from-violet-600 to-violet-500 text-white
+           hover:from-violet-500 hover:to-violet-400 transition-all duration-200
+           shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 focus:ring-offset-gray-950
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold
+           border border-violet-500/30 text-violet-300 hover:bg-violet-500/10
+           transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-violet-500
+           focus:ring-offset-2 focus:ring-offset-gray-950;
+  }
+
+  .score-ring-track {
+    @apply fill-none stroke-white/10;
+    stroke-width: 8;
+  }
+
+  .score-ring-fill {
+    @apply fill-none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Glow animations */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.6); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to { background-position: 200% center; }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Loading skeleton shimmer */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.03) 0%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.03) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}

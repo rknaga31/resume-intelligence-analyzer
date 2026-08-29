@@ -17,17 +17,14 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build backend image (dry-run)
+      - name: Build backend image
         run: |
-          echo "Docker build will run once backend/Dockerfile is created"
-          # docker build ./backend --tag ria-backend:ci --no-cache
+          docker build -f backend/Dockerfile . --tag ria-backend:ci
 
-      - name: Build frontend image (dry-run)
+      - name: Build frontend image
         run: |
-          echo "Docker build will run once frontend/Dockerfile is created"
-          # docker build ./frontend --tag ria-frontend:ci --no-cache
+          docker build ./frontend --tag ria-frontend:ci
 
-      - name: Validate docker-compose (dry-run)
+      - name: Validate docker-compose configuration
         run: |
-          echo "docker compose config check will run once docker-compose.yml is created"
-          # docker compose config
+          docker compose config

@@ -12,17 +12,17 @@ import uuid
 from fastapi import APIRouter
 
 from app.schemas.analysis import (
+    AchievementAnalysis,
+    BulletFeedback,
     FullAnalysisRequest,
     FullAnalysisResponse,
+    LLMSynthesis,
     ScoreBreakdown,
     SkillBreakdown,
     SkillMatch,
-    AchievementAnalysis,
-    BulletFeedback,
-    LLMSynthesis,
 )
-from ml.scoring.scorer import score_resume
 from ml.llm.reasoner import synthesize_analysis
+from ml.scoring.scorer import score_resume
 
 router = APIRouter()
 

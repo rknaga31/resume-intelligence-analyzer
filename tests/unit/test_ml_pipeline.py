@@ -6,15 +6,14 @@ achievement analysis, ATS scoring, job matching, and prompt injection defense.
 """
 from __future__ import annotations
 
-import sys
 import os
+import sys
 
 # Ensure both backend and repo root are on the path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "backend"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 import pytest
-
 
 # ---------------------------------------------------------------------------
 # Sample Fixtures
@@ -120,36 +119,36 @@ class TestContactExtractor:
     def test_extracts_email(self):
         from ml.extractors.contact import extract_contact_info
         result = extract_contact_info(SAMPLE_RESUME)
-        assert result["email"] == "jane.doe@example.com"
+        assert result.email == "jane.doe@example.com"
 
     def test_extracts_phone(self):
         from ml.extractors.contact import extract_contact_info
         result = extract_contact_info(SAMPLE_RESUME)
-        assert result["phone"] is not None
-        assert "555" in result["phone"]
+        assert result.phone != ""
+        assert "555" in result.phone
 
     def test_extracts_linkedin(self):
         from ml.extractors.contact import extract_contact_info
         result = extract_contact_info(SAMPLE_RESUME)
-        assert result["linkedin"] is not None
-        assert "linkedin.com" in result["linkedin"]
+        assert result.linkedin_url != ""
+        assert "linkedin.com" in result.linkedin_url
 
     def test_extracts_github(self):
         from ml.extractors.contact import extract_contact_info
         result = extract_contact_info(SAMPLE_RESUME)
-        assert result["github"] is not None
-        assert "github.com" in result["github"]
+        assert result.github_url != ""
+        assert "github.com" in result.github_url
 
     def test_extracts_name(self):
         from ml.extractors.contact import extract_contact_info
         result = extract_contact_info(SAMPLE_RESUME)
-        assert result["name"] == "Jane Doe"
+        assert result.name == "Jane Doe"
 
-    def test_missing_contact_returns_none(self):
+    def test_missing_contact_returns_empty_string(self):
         from ml.extractors.contact import extract_contact_info
         result = extract_contact_info("No contact information here.")
-        assert result["email"] is None
-        assert result["phone"] is None
+        assert result.email == ""
+        assert result.phone == ""
 
 
 # ---------------------------------------------------------------------------

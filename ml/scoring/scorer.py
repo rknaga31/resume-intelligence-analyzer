@@ -14,11 +14,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from ml.extractors.skill_classifier import classify_skills, match_skills_to_job
 from ml.extractors.job_parser import parse_job_description
+from ml.extractors.skill_classifier import classify_skills, match_skills_to_job
 from ml.parsers.section_detector import get_section_names
-from ml.scoring.ats_analyzer import compute_ats_score, ATSScoreResult
-from ml.scoring.achievement_analyzer import analyze_achievements, AchievementAnalysisResult
+from ml.scoring.achievement_analyzer import AchievementAnalysisResult, analyze_achievements
+from ml.scoring.ats_analyzer import ATSScoreResult, compute_ats_score
 
 
 @dataclass

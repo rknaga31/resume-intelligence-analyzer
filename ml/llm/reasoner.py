@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from app.core.config import get_settings
 from app.core.logging import get_logger
+
 from ml.llm.base import BaseLLMProvider, LLMAnalysisOutput
 from ml.llm.fallback_provider import FallbackProvider
 
@@ -35,20 +36,14 @@ def _get_provider() -> BaseLLMProvider:
     if settings.llm_provider == "openai" and settings.openai_api_key:
         try:
             from ml.llm.openai_provider import OpenAIProvider  # noqa: PLC0415
-            return OpenAIProvider(
-                api_key=settings.openai_api_key,
-                model=settings.openai_model,
-            )
+            return OpenAIProvider()
         except ImportError:
             logger.warning("openai_import_error", fallback="rule-based")
 
     if settings.llm_provider == "anthropic" and settings.anthropic_api_key:
         try:
             from ml.llm.anthropic_provider import AnthropicProvider  # noqa: PLC0415
-            return AnthropicProvider(
-                api_key=settings.anthropic_api_key,
-                model=settings.anthropic_model,
-            )
+            return AnthropicProvider()
         except ImportError:
             logger.warning("anthropic_import_error", fallback="rule-based")
 

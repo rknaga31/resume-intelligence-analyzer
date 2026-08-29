@@ -7,6 +7,8 @@ from __future__ import annotations
 
 import time
 import uuid
+from collections.abc import AsyncGenerator
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -20,10 +22,20 @@ from app.core.exceptions import (
     resume_intelligence_exception_handler,
 )
 from app.core.logging import configure_logging, get_logger
+from app.db.session import init_db
 
 settings = get_settings()
 configure_logging(settings.log_level)
 logger = get_logger(__name__)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+    """Application lifespan — runs DB init on startup."""
+    await init_db()
+    logger.info("startup_complete", env=settings.app_env)
+    yield
+    logger.info("shutdown_complete")
 
 
 def create_app() -> FastAPI:
@@ -39,6 +51,7 @@ def create_app() -> FastAPI:
             "Resume Intelligence Analyzer API — AI-powered resume parsing, "
             "semantic job matching, and explainable career recommendations."
         ),
+        lifespan=lifespan,
         docs_url="/docs",
         redoc_url="/redoc",
         openapi_url="/openapi.json",

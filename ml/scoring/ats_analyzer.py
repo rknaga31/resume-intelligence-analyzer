@@ -43,25 +43,29 @@ def _score_contact_info(text: str) -> tuple[int, list[str], list[str]]:
     issues: list[str] = []
     strengths: list[str] = []
 
-    if contact.get("email"):
+    if contact.email:
         score += 10
         strengths.append("Email address detected")
     else:
         issues.append("No email address found — critical for ATS parsing")
 
-    if contact.get("phone"):
+    if contact.phone:
         score += 5
         strengths.append("Phone number detected")
     else:
         issues.append("No phone number found")
 
-    if contact.get("location"):
+    # Location detection: look for city/state pattern directly in text
+    _location_re = re.compile(
+        r"\b[A-Z][a-zA-Z\s]+,\s*(?:[A-Z]{2}|[A-Z][a-z]+)\b"
+    )
+    if _location_re.search(text):
         score += 5
         strengths.append("Location detected")
     else:
         issues.append("No location found — some ATS systems require it")
 
-    if contact.get("linkedin") or contact.get("github"):
+    if contact.linkedin_url or contact.github_url:
         score += 5
         strengths.append("Professional profile URL detected")
 
@@ -111,8 +115,8 @@ def _score_formatting(text: str) -> tuple[int, list[str], list[str]]:
 
     # Bullet point detection (lines starting with - or •)
     bullet_lines = [
-        l for l in text.splitlines()
-        if l.strip().startswith(("-", "•", "*", "–"))
+        line for line in text.splitlines()
+        if line.strip().startswith(("-", "•", "*", "–"))
     ]
     if len(bullet_lines) >= 5:
         score += 10
