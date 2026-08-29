@@ -1,93 +1,41 @@
 # Resume Intelligence Analyzer
 
-> **Status: 🚧 In Development — initial repository scaffolding**
+> **Status: ✅ Live — Full-stack AI resume analysis platform**
 
-An AI-powered platform that transforms resumes into structured intelligence, enabling deep analysis, semantic matching, and actionable career insights using large language models and modern NLP techniques.
-
----
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Planned Features](#planned-features)
-- [Planned Architecture](#planned-architecture)
-- [Technology Stack](#technology-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Environment Variables](#environment-variables)
-- [Development Roadmap](#development-roadmap)
-- [Contributing](#contributing)
-- [License](#license)
+An AI-powered platform that transforms resumes into structured intelligence — deep NLP extraction, semantic job-description matching, ATS scoring, and LLM-generated career insights.
 
 ---
 
-## Overview
-
-**Resume Intelligence Analyzer** is a full-stack AI/ML application designed to:
-
-- Parse and extract structured information from resumes in multiple formats (PDF, DOCX, TXT)
-- Apply NLP and LLM-based analysis to surface skills, experience timelines, and career trajectories
-- Perform semantic job-description matching using vector embeddings
-- Provide recruiters and candidates with actionable insights and gap analysis
-- Expose a clean REST API for integration with external ATS and HR systems
-
-This project is in its **initial scaffolding phase**. No application features are implemented yet.
-
----
-
-## Planned Features
+## Features
 
 ### Core Analysis
-- [ ] Multi-format resume parsing (PDF, DOCX, TXT)
-- [ ] Named entity extraction (skills, roles, companies, education, certifications)
-- [ ] Experience timeline reconstruction and career gap detection
-- [ ] Skill taxonomy mapping and normalization
-- [ ] Semantic similarity scoring between resume and job description
+- ✅ Multi-format resume parsing — PDF, DOCX, TXT
+- ✅ Named entity extraction — skills, roles, companies, education, certifications
+- ✅ Section classification across 15+ resume header patterns
+- ✅ Extensible 15-category technical skill taxonomy
+- ✅ ATS-style compatibility scoring with explainable breakdown
+- ✅ Achievement impact scoring engine
 
 ### AI / LLM Capabilities
-- [ ] LLM-powered resume summarization
-- [ ] Intelligent feedback and improvement suggestions
-- [ ] Multi-LLM support (OpenAI GPT-4o, Anthropic Claude, Google Gemini)
-- [ ] RAG (Retrieval-Augmented Generation) for context-aware analysis
-- [ ] Vector embedding search for candidate ranking
+- ✅ Multi-LLM support — OpenAI GPT-4o, Anthropic Claude, Google Gemini
+- ✅ Prompt-sandboxed LLM reasoning layer
+- ✅ Bullet-point improvement suggestions
+- ✅ Transformer semantic vector matching (`all-MiniLM-L6-v2`)
+- ✅ Skill gap analysis against job descriptions
 
 ### Platform
-- [ ] Secure file upload and temporary storage
-- [ ] User authentication and authorization (JWT)
-- [ ] Dashboard for recruiters with batch-analysis support
-- [ ] REST API with OpenAPI / Swagger documentation
-- [ ] Export results as JSON, PDF reports, or CSV
+- ✅ JWT authentication — register, login, token refresh
+- ✅ Secure file upload with MIME + magic-byte validation
+- ✅ REST API with OpenAPI / Swagger docs (`/docs`)
+- ✅ Next.js 14 frontend — upload flow, analysis progress, results dashboard
+- ✅ Docker Compose for local full-stack development
 
 ### Infrastructure
-- [ ] Docker Compose development environment
-- [ ] GitHub Actions CI/CD pipeline
-- [ ] Automated testing (unit, integration, E2E)
-- [ ] Monitoring and observability
-
----
-
-## Planned Architecture
-
-```
-┌──────────────────────────────────────────────────────────────┐
-│                        Client Layer                          │
-│              React / Next.js + TypeScript Frontend           │
-│                  (Upload UI · Dashboard · Reports)           │
-└────────────────────────┬─────────────────────────────────────┘
-                         │ HTTPS / REST
-┌────────────────────────▼─────────────────────────────────────┐
-│                     API Gateway Layer                        │
-│                FastAPI (Python) — Async REST API             │
-│              Auth · Validation · Rate Limiting               │
-└──────────┬─────────────────────────────┬────────────────────-┘
-           │                             │
-┌──────────▼──────────┐   ┌─────────────▼──────────────────────┐
-│   ML / NLP Engine   │   │         Data Layer                 │
-│  Parsing · NER      │   │  PostgreSQL (structured data)       │
-│  Embeddings · LLMs  │   │  Vector DB (semantic search)        │
-│  Scoring · RAG      │   │  Redis (cache · task queue)         │
-└─────────────────────┘   └────────────────────────────────────┘
-```
+- ✅ Multi-stage production Dockerfiles (backend + frontend)
+- ✅ GitHub Actions CI/CD — lint, type-check, test, Docker build
+- ✅ Render Blueprint for one-click backend + PostgreSQL deploy
+- ✅ Vercel config for one-click frontend deploy
+- ✅ Unit + integration test suite (pytest)
 
 ---
 
@@ -95,18 +43,16 @@ This project is in its **initial scaffolding phase**. No application features ar
 
 | Layer | Technology |
 |---|---|
-| **Frontend** | React 18, Next.js 14+, TypeScript, Tailwind CSS |
-| **Backend API** | Python 3.11+, FastAPI, Pydantic v2, SQLAlchemy 2.0 |
-| **Database** | PostgreSQL 15+ (primary), Redis (cache/queue) |
-| **ML / NLP** | spaCy, Transformers (HuggingFace), LangChain |
-| **LLMs** | OpenAI GPT-4o, Anthropic Claude, Google Gemini |
-| **Vector DB** | Pinecone / Qdrant / Weaviate (TBD) |
+| **Frontend** | Next.js 14 (App Router), React 19, TypeScript, Tailwind CSS |
+| **Backend API** | Python 3.11+, FastAPI, Pydantic v2, SQLAlchemy 2.0 async |
+| **Database** | PostgreSQL 15+ (primary), SQLite (local dev fallback) |
+| **ML / NLP** | spaCy, Transformers (HuggingFace `all-MiniLM-L6-v2`) |
+| **LLMs** | OpenAI GPT-4o, Anthropic Claude 3.5 Sonnet, Google Gemini 1.5 Pro |
 | **Document Parsing** | pdfplumber, python-docx, PyMuPDF |
 | **Auth** | JWT (python-jose), bcrypt |
 | **Containerization** | Docker, Docker Compose |
 | **CI/CD** | GitHub Actions |
-| **Testing** | pytest, pytest-asyncio, Playwright (E2E) |
-| **Monitoring** | Sentry, LangSmith (LLM tracing) |
+| **Testing** | pytest, pytest-asyncio |
 
 ---
 
@@ -116,129 +62,133 @@ This project is in its **initial scaffolding phase**. No application features ar
 resume-intelligence-analyzer/
 ├── backend/                # FastAPI application
 │   ├── app/
-│   │   ├── api/            # Route handlers
-│   │   ├── core/           # Config, security, logging
-│   │   ├── db/             # Models, migrations, session
-│   │   ├── schemas/        # Pydantic request/response models
-│   │   └── services/       # Business logic layer
+│   │   ├── api/v1/         # Route handlers (analysis, auth, health)
+│   │   ├── core/           # Config, security (JWT), logging
+│   │   ├── db/             # SQLAlchemy models, async session
+│   │   ├── schemas/        # Pydantic v2 request/response models
+│   │   └── services/       # Business logic (auth, analysis)
 │   ├── requirements.txt
 │   └── Dockerfile
-├── frontend/               # React / Next.js application
+├── frontend/               # Next.js 14 application
 │   ├── src/
-│   │   ├── app/            # Next.js app router pages
+│   │   ├── app/            # App Router pages (/, /analyze, /results)
 │   │   ├── components/     # Reusable UI components
-│   │   ├── hooks/          # Custom React hooks
-│   │   ├── lib/            # API client, utilities
-│   │   └── types/          # TypeScript type definitions
+│   │   └── lib/            # API client, utilities
 │   ├── package.json
 │   └── Dockerfile
 ├── ml/                     # ML & NLP pipeline
-│   ├── parsers/            # Document parsing modules
-│   ├── extractors/         # NER and entity extraction
-│   ├── embeddings/         # Vector embedding pipeline
-│   ├── llm/                # LLM integration wrappers
-│   └── scoring/            # Matching and scoring logic
-├── tests/                  # Test suites
-│   ├── unit/
-│   ├── integration/
-│   └── e2e/
-├── docs/                   # Project documentation
-│   ├── architecture/
-│   ├── api/
-│   └── guides/
-├── scripts/                # Dev & ops utility scripts
-├── .github/
-│   └── workflows/          # GitHub Actions CI/CD
-├── .env.example            # Environment variable template
-├── .gitignore
-├── docker-compose.yml      # Local development services
-├── AGENTS.md               # AI agent instructions
-├── LICENSE
-└── README.md
+│   ├── parsers/            # Document parsing + section detection
+│   ├── extractors/         # NER and contact extraction
+│   ├── llm/                # LLM providers (OpenAI, Anthropic, Gemini)
+│   └── scoring/            # ATS analyzer + scorer
+├── tests/
+│   ├── unit/               # Unit tests
+│   └── integration/        # API integration tests
+├── docs/                   # Architecture docs, ADRs, roadmap
+├── .github/workflows/      # GitHub Actions CI/CD
+├── docker-compose.yml      # Local full-stack dev environment
+├── render.yaml             # Render.com deploy blueprint
+└── .env.example            # Environment variable template
 ```
 
 ---
 
 ## Getting Started
 
-> ⚠️ **Application code has not been implemented yet.** The following steps will be valid once development begins.
-
 ### Prerequisites
 
 - Python 3.11+
-- Node.js 20+ and npm / pnpm
+- Node.js 20+ and npm
 - Docker Desktop
-- Git
 
-### Setup (upcoming)
+### Quick Start (Docker Compose — recommended)
 
 ```bash
 # 1. Clone the repository
 git clone https://github.com/rknaga31/resume-intelligence-analyzer.git
 cd resume-intelligence-analyzer
 
-# 2. Copy and configure environment variables
+# 2. Configure environment
 cp .env.example .env
-# Edit .env with your API keys and database credentials
+# Edit .env — add your LLM API key (OPENAI_API_KEY or ANTHROPIC_API_KEY)
 
-# 3. Start infrastructure services
-docker compose up -d postgres redis
+# 3. Start everything
+docker compose up --build
 
-# 4. Set up Python backend
+# Backend API:  http://localhost:8000
+# API Docs:     http://localhost:8000/docs
+# Frontend:     http://localhost:3000
+```
+
+### Manual Setup
+
+```bash
+# Backend
 cd backend
 python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
+.venv\Scripts\activate      # Windows
 pip install -r requirements.txt
+uvicorn app.main:app --reload
 
-# 5. Set up Node frontend
-cd ../frontend
+# Frontend (separate terminal)
+cd frontend
 npm install
-
-# 6. Start development servers
-# Terminal 1 — backend
-cd backend && uvicorn app.main:app --reload
-
-# Terminal 2 — frontend
-cd frontend && npm run dev
+npm run dev
 ```
 
 ---
 
 ## Environment Variables
 
-Copy `.env.example` to `.env` and populate the values. See [`.env.example`](.env.example) for the full reference.
+Copy `.env.example` to `.env`. Required variables:
 
-**Required to run:**
-- `POSTGRES_*` — database connection
-- `OPENAI_API_KEY` (or another LLM provider key)
-- `APP_SECRET_KEY` and `JWT_SECRET_KEY`
+| Variable | Description |
+|---|---|
+| `APP_SECRET_KEY` | 32+ random bytes — `openssl rand -hex 32` |
+| `JWT_SECRET_KEY` | 32+ random bytes — `openssl rand -hex 32` |
+| `DATABASE_URL` | PostgreSQL connection string |
+| `OPENAI_API_KEY` | Or `ANTHROPIC_API_KEY` / `GOOGLE_API_KEY` |
+| `ALLOWED_ORIGINS` | CORS — your frontend URL |
+
+See [`.env.example`](.env.example) for the full reference.
 
 ---
 
-## Development Roadmap
+## Deployment
+
+### Frontend → Vercel
+
+1. Import repo at [vercel.com/new](https://vercel.com/new)
+2. Set **Root Directory** = `frontend`
+3. Add env var: `NEXT_PUBLIC_API_URL` = your backend URL
+4. Deploy
+
+### Backend → Render (Blueprint)
+
+1. Go to [dashboard.render.com/blueprints](https://dashboard.render.com/blueprints)
+2. **New Blueprint Instance** → connect this repo
+3. Render reads `render.yaml` and provisions the FastAPI service + PostgreSQL
+4. Set secret env vars in the Render dashboard (LLM keys, `ALLOWED_ORIGINS`)
+
+---
+
+## Roadmap
 
 | Phase | Description | Status |
 |---|---|---|
-| **0 — Repository Setup** | Scaffold project, CI/CD, documentation | 🚧 In Progress |
-| **1 — Core Infrastructure** | FastAPI skeleton, DB models, Docker Compose | ⏳ Planned |
-| **2 — Document Parsing** | PDF/DOCX ingestion and text extraction | ⏳ Planned |
-| **3 — NLP Extraction** | NER, skill taxonomy, entity linking | ⏳ Planned |
-| **4 — LLM Integration** | LLM summarization, feedback generation | ⏳ Planned |
-| **5 — Semantic Search** | Vector embeddings, JD matching | ⏳ Planned |
-| **6 — Frontend MVP** | Upload UI, results dashboard | ⏳ Planned |
-| **7 — Auth & Security** | JWT auth, rate limiting, RBAC | ⏳ Planned |
-| **8 — Production Hardening** | Testing, monitoring, deployment | ⏳ Planned |
-
----
-
-## Contributing
-
-Contributions are welcome once the project reaches an early development milestone. In the meantime, feel free to open issues for feature requests or architectural discussions.
-
-Please read [AGENTS.md](AGENTS.md) before contributing — it contains project-wide coding standards and conventions that all contributors (human and AI) must follow.
+| **0 — Repository Setup** | Scaffold project, CI/CD, documentation | ✅ Done |
+| **1 — Core Infrastructure** | FastAPI, DB models, Docker Compose | ✅ Done |
+| **2 — Document Parsing** | PDF/DOCX ingestion and text extraction | ✅ Done |
+| **3 — NLP Extraction** | NER, skill taxonomy, entity linking | ✅ Done |
+| **4 — LLM Integration** | LLM summarization, feedback generation | ✅ Done |
+| **5 — Semantic Search** | Vector embeddings, JD matching | ✅ Done |
+| **6 — Frontend MVP** | Upload UI, results dashboard | ✅ Done |
+| **7 — Auth & Security** | JWT auth, MIME validation, security headers | ✅ Done |
+| **8 — Production Hardening** | Testing, Docker, CI/CD, deploy configs | ✅ Done |
+| **9 — Multi-Doc & ATS Integrations** | Batch analysis, LinkedIn import, webhooks | 🔜 Next |
 
 ---
 
 ## License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+MIT — see [LICENSE](LICENSE).
